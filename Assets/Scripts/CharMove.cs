@@ -6,6 +6,7 @@ public class CharMove : MonoBehaviour
 {
 	Animator animator;
 	CharacterController cc;
+	AudioSource audio;
 
 	Vector3 dir = Vector3.zero;//jump用の変数
 	public float gravity = 20.0f;//inspectorから調整できるようにpublic にしておく(初期値)
@@ -17,6 +18,7 @@ public class CharMove : MonoBehaviour
 	{
 		animator = GetComponent<Animator>();
 		cc = GetComponent<CharacterController>();
+		audio = GetComponent<AudioSource>();
 	}
 
 
@@ -50,9 +52,16 @@ public class CharMove : MonoBehaviour
 		{
 			dir.y = 0;
 		}
+	}
+		public void OnJumpStart()
+        {
+
+		dir.y = jumpPower;
+		audio.Play();
+        }
 
 	}
 
-}
+
 
 
